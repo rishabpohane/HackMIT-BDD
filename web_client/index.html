@@ -3,21 +3,67 @@
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="style/style.css">
-	<title>HackMIT</title>
+
+	<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+	<script type="text/javascript">
+
+	$(document).ready(function() {
+
+		var config = {
+	    apiKey: "AIzaSyDdn55P0Eb6jGBIj_roD3pg9KF5c1bA7CY",
+	    authDomain: "hackmit-bdd.firebaseapp.com",
+	    databaseURL: "https://hackmit-bdd.firebaseio.com",
+	    storageBucket: "",
+	    messagingSenderId: "498649264042"
+	  };
+
+	  firebase.initializeApp(config);
+
+	  var database_ref = firebase.database().ref();
+
+	  $("#submit_button").click(function() {
+	  	var delivery_info_ref = database_ref.push();
+
+	  	var name = $("#name_input").val().trim();
+	  	var email = $("#email_input").val().trim();
+	  	var address = $("#address_input").val().trim();
+	  	var city = $("#city_input").val().trim();
+	  	var state = $("#state_input").val().trim();
+	  	var zip = $("#zip_input").val().trim();
+
+	  	delivery_info_ref.set({
+	  		"name": name,
+	  		"email": email,
+	  		"address": address,
+	  		"city": city,
+	  		"state": state,
+	  		"zip": zip
+	  	});
+	  });
+
+	});
+
+	</script>
+
+	<title>BDD</title>
 </head>
+
 <body>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 				<p id="title">Request Delivery</p>
-				<form method="POST" action="/verify">
-					<input type="text" name="name" placeholder="Name"></input>
-					<input type="text" name="email" placeholder="Email"></input>
-					<input type="text" name="address" placeholder="Address"></input>
-					<input type="text" name="city" placeholder="City"></input>
-					<input type="text" name="state" placeholder="State"></input>
-					<input type="text" name="zip" placeholder="Zip Code"></input>
-				</form>
+					<input type="text" id="name_input" placeholder="Name"></input>
+					<input type="text" id="email_input" placeholder="Email"></input>
+					<input type="text" id="address_input" placeholder="Address"></input>
+					<input type="text" id="city_input" placeholder="City"></input>
+					<input type="text" id="state_input" placeholder="State"></input>
+					<input type="text" id="zip_input" placeholder="Zip Code"></input>
+
+					<a href="/payment">
+					<input type="submit" id="submit_button" value="Request"></a>
 			</div>
 		</div>
 	</div>
