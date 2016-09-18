@@ -25,7 +25,7 @@ int main(){
 		ci.getAcceleration(&x,&y,&z);
 		temp = ci.getTempC();
 
-		system(("curl -X POST -d '{\"xa\":\""+to_string(x)+"\",\"ya\":\""+to_string(y)+"\",\"za\":\""+to_string(z)+"\",\"temp\":\""+to_string(temp)+"\"}' } https://hackmit-bdd.firebaseio.com/flight-1.json").c_str());
+		system(("curl -X POST -d '{\"xa\":\""+to_string(x)+"\",\"ya\":\""+to_string(y)+"\",\"za\":\""+to_string(z)+"\",\"temp\":\""+to_string(temp)+"\", \"face\":\""+to_string(correct_face_detected)+"\"}' } https://hackmit-bdd.firebaseio.com/flight-1.json").c_str());
 
 		if(correct_face_detected){
 			ci.switchGreenLed();
