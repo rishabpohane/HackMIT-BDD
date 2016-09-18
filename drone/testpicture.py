@@ -70,6 +70,7 @@ def main():
     ##get cascase xml file
     #urllib.urlretrieve("https://raw.githubusercontent.com/Itseez/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml","haarcascade_frontalface_alt.xml")
 
+    take_pic("pic/r_10.png");
     # Create the classifier and run the algorithm
     recognizer = cv2.createLBPHFaceRecognizer()
 
@@ -78,7 +79,6 @@ def main():
     images, labels = get_images_and_labels(path)
     recognizer.train(images, np.array(labels))
 
-    take_pic("pic/r_10.png");
 
     predict(recognizer, "pic/r_10.png")
 
