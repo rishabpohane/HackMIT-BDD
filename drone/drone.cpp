@@ -36,6 +36,26 @@ namespace libdrone{
 
 	}
 
+	void cargo_io::lcdSetCursor(int x, int y){
+		if(lcd==NULL)
+    			lcd = new upm::Jhd1313m1(0, 0x3E, 0x62);
+		lcd->setCursor(x,y);
+
+	}
+
+	void cargo_io::lcdWrite(string x){
+		if(lcd==NULL)
+    			lcd = new upm::Jhd1313m1(0, 0x3E, 0x62);
+		lcd->write(x);
+
+	}
+
+	void cargo_io::lcdSetColor(int r, int g, int b){
+		if(lcd==NULL)
+    			lcd = new upm::Jhd1313m1(0, 0x3E, 0x62);
+		lcd->setColor(r,g,b);
+	}
+
 
 	int cargo_io::getTempF(){
 		int celsius = getTempC();

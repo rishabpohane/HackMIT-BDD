@@ -14,9 +14,9 @@ def get_faces(img_path, faceCascade):
 def get_images_and_labels(path):
     image_paths = [];
     x = 0
-    while(x<2):
+    while(x<4):
         image_paths.append("%sd_%d.png" % (path,x));
-        image_paths.append("%sr_%d.png" % (path,x));
+#        image_paths.append("%sr_%d.png" % (path,x));
         x = x +1
     images = []
     labels = []
@@ -49,6 +49,8 @@ def predict(recognizer, img_path_to_test):
         nbr_actual = 0;
         if "m" in img_path_to_test:
             nbr_actual = 1;
+        print "processing face..."
+
         if nbr_actual == nbr_predicted:
             if(conf < best_good):
                 return_value = True;
@@ -59,11 +61,11 @@ def predict(recognizer, img_path_to_test):
             
     fo = open("f_status.txt", "w")
     if(return_value):
-        fo.write("Conf of %d" % (best_good))
-        print "Good conf!!!"
+        fo.write("1\nConf of %d" % (best_good))
+        print "Good %d" % (best_good)
     else:
-        fo.write("Conf of %d" % (best_bad))
-        print "bad conf!!!"
+        fo.write("0\nConf of %d" % (best_bad))
+        print "bad conf%d" % (best_bad)
 
     fo.close()
 
@@ -81,6 +83,9 @@ def take_pic(save_file_path):
 
 
 def main():
+    fo = open("f_status.txt", "w")
+    fo.write("0\nConf of 199")
+    fo.close()
     #cap = cv2.VideoCapture(0)
     ##get cascase xml file
     #urllib.urlretrieve("https://raw.githubusercontent.com/Itseez/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml","haarcascade_frontalface_alt.xml")
@@ -88,17 +93,14 @@ def main():
     # Create the classifier and run the algorithm
     take_pic_init_path ="demo_pic/d_0.png"
     take_pic_init_path1="demo_pic/d_1.png"
+    take_pic_init_path2 ="demo_pic/d_2.png"
+    take_pic_init_path3="demo_pic/d_3.png"
     take_pic(take_pic_init_path)
     take_pic(take_pic_init_path1)
+    take_pic(take_pic_init_path2)
+    take_pic(take_pic_init_path3)
 
     time.sleep(5)
-
-    take_pic_init_path ="demo_pic/r_0.png"
-    take_pic_init_path1="demo_pic/r_1.png"
-    take_pic(take_pic_init_path)
-    take_pic(take_pic_init_path1)
-
-
 
 
     take_pic_path = "demo_pic/cap.png"

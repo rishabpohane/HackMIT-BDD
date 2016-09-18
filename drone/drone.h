@@ -10,8 +10,10 @@
 #include <jhd1313m1.hpp>
 #include <mraa.hpp>
 #include <groveled.hpp>
+#include <string>
 
 
+using namespace std;
 namespace libdrone{
 
 	class cargo_io{
@@ -23,11 +25,18 @@ namespace libdrone{
 			int getTempF();
 			int getTempC();
 
+			void lcdSetCursor(int x, int y);
+			void lcdWrite(string x);
+			void lcdSetColor(int x, int y, int z);
+
+
+
 			void switchHeadLight(float level = 0.5f);
 
 			void switchLed(int in);
 			void switchRedLed();
 			void switchGreenLed();
+
 
 		private:
 			//Accelerometer
@@ -38,6 +47,8 @@ namespace libdrone{
 			upm::GroveTemp * temp = NULL;
 			//headlight
 			mraa::Pwm * headlight = NULL;
+
+
 			bool headlight_on = false;
 			//LEDs
 			upm::GroveLed * red_led = NULL;
