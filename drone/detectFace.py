@@ -46,19 +46,16 @@ def predict(recognizer, img_path_to_test):
     return_value = False;
     for (x,y,w,h) in faces:
         nbr_predicted, conf = recognizer.predict(gray[y: y+h, x:x+w])
-        nbr_actual = 0;
-        if "d" in img_path_to_test:
-            nbr_actual = 0;
+        #nbr_actual = 0;
+        #if "d" in img_path_to_test:
+        #    nbr_actual = 0;
         print "processing face..."
 
-        if nbr_actual == nbr_predicted:
-            if(conf < best_good):
-                return_value = True;
-                best_good = conf
-        else:
-            if(conf<best_bad):
-                best_bad = conf
-            
+        print conf;
+        print best_good;
+        if(conf < best_good):
+            return_value = True;
+            best_good = conf
     fo = open("f_status.txt", "w")
     if(return_value):
         fo.write("1\nConf of %d" % (best_good))

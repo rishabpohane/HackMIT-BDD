@@ -16,7 +16,7 @@ if(signo==SIGINT)
 
 int main(){
 	system("python detectFace.py & ");
-	sleep(1);
+	sleep(4);
 
 	libdrone::cargo_io ci;
 	float x,y,z;
@@ -41,9 +41,11 @@ int main(){
 			int status = atoi(line1.c_str());
 			if(status == 1){
 				shouldRun = false;
+				correct_face_detected = true;
 			}
 			ci.lcdSetCursor(0,0);
 			ci.lcdWrite("               ");
+			ci.lcdSetCursor(0,0);
 			ci.lcdWrite(line2);
 		}
 		ci.getAcceleration(&x,&y,&z);
