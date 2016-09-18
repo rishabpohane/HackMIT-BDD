@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <title>Drone Tracking</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    
+    <!--Title of page-->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+	  <p id="title">Track your drone!</p>
+        </div>
+      </div>
+    </div>
+    
+    <!--Map API integration-->
+    <div id="map" style="width: 500px; height: 500px;" align ="middle"></div>
+    <script type="text/javascript">
+      
+      /* function moveDrone(){
+      	marker.setPosition(new google.maps.mitBuilding(0,0));
+	map.panTo(new google.maps.
+      } */
+
+      function initMap() {
+	var mitBuilding = {lat: 42.359264, lng: -71.095788};
+        var harvardBuilding = {lat: 42.373714, lng: -71.118972};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 42.366, lng: -71.1075},
+          zoom: 13
+        });
+	
+	var markerAtMIT = new google.maps.Marker({
+	          position: mitBuilding,
+		  map: map,
+		  label: 'Start',
+ 		  title: 'MIT Building'
+	});
+	
+	var markerAtHarvard = new google.maps.Marker({
+	          position: harvardBuilding,
+		  map: map,
+		  label: 'End',
+	          title: 'Harvard Building'
+	});
+     	
+	var image = 'drone.jpg';
+
+      }
+    
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdn55P0Eb6jGBIj_roD3pg9KF5c1bA7CY&callback=initMap"
+    async defer></script>
+  </body>
+</html>
