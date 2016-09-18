@@ -11,5 +11,5 @@ while(x<10):
     print "pic in... 1"
     time.sleep(1);
     ret, frame = cap.read()
-    cv2.imwrite("rich_pic_%d.png" % (x),frame)
+    cv2.imwrite("pic/r_%d.png" % (x),frame)
     x = x+1;
