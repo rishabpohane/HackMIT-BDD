@@ -15,7 +15,8 @@ if(signo==SIGINT)
 }
 
 int main(){
-	system("python detectFace.py &");
+	system("python detectFace.py & ");
+	sleep(1);
 
 	libdrone::cargo_io ci;
 	float x,y,z;
@@ -42,12 +43,13 @@ int main(){
 				shouldRun = false;
 			}
 			ci.lcdSetCursor(0,0);
+			ci.lcdWrite("               ");
 			ci.lcdWrite(line2);
 		}
 		ci.getAcceleration(&x,&y,&z);
 		temp = ci.getTempC();
 
-		system(("curl -X POST -d '{\"xa\":\""+to_string(x)+"\",\"ya\":\""+to_string(y)+"\",\"za\":\""+to_string(z)+"\",\"temp\":\""+to_string(temp)+"\", \"face\":\""+to_string(correct_face_detected)+"\"}' } https://hackmit-bdd.firebaseio.com/flight-1.json").c_str());
+		system(("curl -X POST -d '{\"xa\":\""+to_string(x)+"\",\"ya\":\""+to_string(y)+"\",\"za\":\""+to_string(z)+"\",\"temp\":\""+to_string(temp)+"\", \"face\":\""+to_string(correct_face_detected)+"\"}' } https://hackmit-bdd.firebaseio.com/flight-1.json &>/dev/null").c_str());
 		if(correct_face_detected){
 			ci.switchGreenLed();
 			ci.switchRedLed();
@@ -58,7 +60,7 @@ int main(){
 		sleep(1);
 	}
 
-	sleep(20);
+	sleep(10);
 	
 
 

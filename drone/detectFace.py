@@ -41,14 +41,14 @@ def predict(recognizer, img_path_to_test):
     faces, gray = get_faces(img_path_to_test,faceCascade);
 
 
-    best_good = 30;
+    best_good = 60;
     best_bad = 200;
     return_value = False;
     for (x,y,w,h) in faces:
         nbr_predicted, conf = recognizer.predict(gray[y: y+h, x:x+w])
         nbr_actual = 0;
-        if "m" in img_path_to_test:
-            nbr_actual = 1;
+        if "d" in img_path_to_test:
+            nbr_actual = 0;
         print "processing face..."
 
         if nbr_actual == nbr_predicted:
