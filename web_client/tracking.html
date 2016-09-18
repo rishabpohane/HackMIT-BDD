@@ -11,8 +11,11 @@
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/rickshaw/1.5.1/rickshaw.css"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/rickshaw/1.5.1/rickshaw.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/rickshaw/1.5.1/rickshaw.min.css"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/rickshaw/1.5.1/rickshaw.min.js"></script>
 	<script type="text/javascript">
-
 	$(document).ready(function() {
 
 	var config = {
@@ -54,7 +57,7 @@
 
   <body>
     
-    <!--Title of page-->
+    <!--Title-->
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -140,9 +143,29 @@
       }
    
       */
-
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdn55P0Eb6jGBIj_roD3pg9KF5c1bA7CY&callback=initMap"
     async defer></script>
+    
+    <!--Data display-->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+	  <p id="title">Drone statistics</p>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+    var graph = new Rickshaw.Graph({
+    	series: [ { data: [ { x: 0, y: 2 }, { x: 1, y: 4 }]}],
+    	renderer: 'area',
+    	element: document.querySelector('#graph')
+	});
+
+	graph.render();
+
+    </script>
+  
   </body>
 </html>
