@@ -1,4 +1,4 @@
-#ifndef
+#ifndef DRONE_API
 #define DRONE_API
 
 #include <unistd.h>
@@ -18,6 +18,16 @@ namespace libdrone{
 		public:
 			cargo_io();
 			~cargo_io();
+			
+			void getAcceleration(float * x, float * y, float * z);
+			int getTempF();
+			int getTempC();
+
+			void switchHeadLight(float level = 0.5f);
+
+			void switchLed(int in);
+			void switchRedLed();
+			void switchGreenLed();
 
 		private:
 			//Accelerometer
@@ -27,13 +37,13 @@ namespace libdrone{
 			//Temp
 			upm::GroveTemp * temp = NULL;
 			//headlight
-			mraa::Pwm * pwm = NULL;
+			mraa::Pwm * headlight = NULL;
+			bool headlight_on = false;
 			//LEDs
-			upm::GroveLed * red_led = NULL
-			upm::GroveLed * green_led = NULL
-			upm::GroveLed * blue_led = NULL
-
-			
+			upm::GroveLed * red_led = NULL;
+			bool red_led_on = false;
+			upm::GroveLed * green_led = NULL;
+			bool green_led_on = false;
 
 	
 	};
