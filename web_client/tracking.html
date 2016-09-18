@@ -11,10 +11,12 @@
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/rickshaw/1.5.1/rickshaw.css"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/rickshaw/1.5.1/rickshaw.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/rickshaw/1.5.1/rickshaw.min.css"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/rickshaw/1.5.1/rickshaw.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+	
+	<script src="../rickshaw-1.5.10/rickshaw.js"></script>
+	<link rel="stylesheet" type="type/css" href="../rickshaw-1.5.10/rickshaw.css"></link>
+	
 	<script type="text/javascript">
 	$(document).ready(function() {
 
@@ -61,7 +63,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-	  <p id="title">Track your drone!</p>
+	  <p id="title">Track your drone delivery!</p>
         </div>
       </div>
     </div>
@@ -95,38 +97,24 @@
 
 	//moveDrone(sp, ep);
 	
-	var image= 'drone.jpg';
+	//var image= 'drone.jpg';
 	
-	var droneLocation = {lat: startPoint, lng: endPoint};
-	var droneMarker = new google.maps.Marker({
-	    	position: droneLocation,
-		map: map,
-		icon: image,
-		title: 'Drone'
-	});
-	
-      }
+	//moveDrone(sp,ep);
+      };
 
       /* 
       
       Should x and y be int values?
       Is my syntax in the loop correct?
       
+      
 
       function moveDrone(startPoint, endPoint){
 
 	var image= 'drone.jpg';
-	
-	var droneLocation = {lat: startPoint, lng: endPoint};
-	var droneMarker = new google.maps.Marker({
-	    	position: droneLocation,
-		map: map,
-		icon: image,
-		title: 'Drone'
-	});	
 
-        for(int y = 0; y <= (startPoint.lat()+endPoint.lat()); y+((startPoint.lat()+endPoint.lat())/100)){
-	  for(int x = 0; x <= (startPoint.lng()+endPoint.lng()); x+((startPoint.lng()+endPoint())/100)){
+        for(int y = startPoint.lat(); y <= endPoint.lat(); y+((startPoint.lat()+endPoint.lat())/100)){
+	  for(int x = startPoint.lng(); x <= endPoint.lng(); x+((startPoint.lng()+endPoint())/100)){
 	    var droneLocation = {lat: x, lng: y};
 	    var droneMarker = new google.maps.Marker({
 	    	position: droneLocation,
@@ -136,13 +124,10 @@
 	    });
 
 	    TimeUnit.SECONDS.sleep(0.1);
-	  
 	  }
 	}
-
       }
-   
-      */
+   */
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdn55P0Eb6jGBIj_roD3pg9KF5c1bA7CY&callback=initMap"
     async defer></script>
