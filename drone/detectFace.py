@@ -41,7 +41,7 @@ def predict(recognizer, img_path_to_test):
     faces, gray = get_faces(img_path_to_test,faceCascade);
 
 
-    best_good = 60;
+    best_good = 80;
     best_bad = 200;
     return_value = False;
     for (x,y,w,h) in faces:
