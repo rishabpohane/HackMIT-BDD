@@ -71,20 +71,20 @@
       padding: 25px;
     }
 
-    div.fixed{
+    w1{
     	position: fixed;
-	bottom: 500px; 
-	right: 500px;
+	bottom: 115px; 
+	left: 395px;
     }
-    div.fixed2{
+    w2{
     	position: fixed;
-	bottom: 500px; 
-	right: 625px;
+	bottom: 115px; 
+	left: 645px;
     }
-    div.fixed3{
+    w3{
     	position: fixed;
-	bottom: 500px; 
-	right: 750px;
+	bottom: 115px; 
+	right: 395px;
     }
 
 </style>
@@ -97,14 +97,18 @@
       <p>Fast and secure delivery.</p>
       <img src="img/drone.jpg" style="width:45%" align="middle">
   </div>
-  <div.fixed href="medical.html">
-    <button type="button" class="btn btn-primary btn-lg">Medical</button>
-  </div>
-  <div.fixed2>
-    <button type="button" class="btn btn-primary btn-lg" href="commercial.html">Commercial</button>
-  </div>
-  <div.fixed3>
-    <button type="button" class="btn btn-primary btn-lg" href="aboutus.html">About Us</button>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <a href="medical.html"><button type="button" class="btn btn-primary btn-lg">Medical</button></a>
+      </div>  
+      <div class="col-sm-4">
+        <a href="commercial.html"><button type="button" class="btn btn-primary btn-lg" href="commercial.html">Commercial</button></a>
+      </div>  
+      <div class="col-sm-4">
+        <a href="#"><button type="button" class="btn btn-primary btn-lg" href="about.html">About</button></a>
+      </div>
+    </div>
   </div>
 
 <footer class="container-fluid text-center">
