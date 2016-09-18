@@ -31,17 +31,19 @@ def get_images_and_labels(path,faceCascade):
 
     return images, labels
 
-def predict(recognizer, img_path_to_test, nbr):
+def predict(recognizer, img_path_to_test):
     img = cv2.imread(img_path_to_test);
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     image_pil = np.array(gray, 'uint8')
     faces = faceCascade.detectMultiScale(image_pil)
-    nbr_predicted, conf = recognizer
-    
-
-
-
-
+    nbr_predicted, conf = recognizer.predict(predict_image[y: y+h, x:x+w])
+    nbr_actual = 0;
+    if "m" in image_path:
+        nbr_actual = 1;
+    if nbr_actual == nbr_predicted:
+        print "%d is correctly recognized with confidence: %d" % (nbr_actual, conf)
+    else
+        print "%d is NOT correctly recognized with confidence: %d" % (nbr_actual, conf)
 
 def take_pic(save_file_path):
     ret, frame = cap.read()
@@ -60,9 +62,6 @@ def main():
     path = "img/"
     images, labels = get_images_and_labels(path,faceCascade)
     recognizer.train(images, np.array(labels))
-
-
-
 
     #cv2.imwrite("rich_facefound.png",img)
 
