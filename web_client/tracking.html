@@ -3,6 +3,41 @@
   
   <head>
     <title>Drone Tracking</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+
+	<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+
+	$(document).ready(function() {
+
+	var config = {
+	    apiKey: "AIzaSyDdn55P0Eb6jGBIj_roD3pg9KF5c1bA7CY",
+	    authDomain: "hackmit-bdd.firebaseapp.com",
+	    databaseURL: "https://hackmit-bdd.firebaseio.com",
+	    storageBucket: "",
+	    messagingSenderId: "498649264042"
+	};
+
+	firebase.initializeApp(config);
+
+	// Get a database reference to our posts
+	var ref = new Firebase("https://docs-examples.firebaseio.com/web/saving-data/fireblog/posts");
+	// Attach an asynchronous callback to read the data at our posts reference
+	ref.on("value", function(snapshot) {
+	  console.log(snapshot.val());
+	  }, function (errorObject) {
+	    console.log("The read failed: " + errorObject.code);
+	    });
+
+	});
+
+	</script>
+    
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
@@ -29,40 +64,83 @@
     </div>
     
     <!--Map API integration-->
-    <div id="map" style="width: 500px; height: 500px;" align ="middle"></div>
+    <div id="map" style="width: 500px; height: 500px;" class ="col-md-4 col-md-offset-4"></div>
     <script type="text/javascript">
-      
-      /* function moveDrone(){
-      	marker.setPosition(new google.maps.mitBuilding(0,0));
-	map.panTo(new google.maps.
-      } */
 
       function initMap() {
-	var mitBuilding = {lat: 42.359264, lng: -71.095788};
-        var harvardBuilding = {lat: 42.373714, lng: -71.118972};
+        /*Ideally we would feed in startPoint and endPoint based off of inputs*/
+	var sp = {lat: 42.359264, lng: -71.095788};
+        var ep = {lat: 42.373714, lng: -71.118972};
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 42.366, lng: -71.1075},
-          zoom: 13
+          zoom: 14
         });
 	
-	var markerAtMIT = new google.maps.Marker({
-	          position: mitBuilding,
+	var markerAtStart = new google.maps.Marker({
+	          position: sp,
 		  map: map,
 		  label: 'Start',
- 		  title: 'MIT Building'
+ 		  title: 'Start Point'
 	});
 	
-	var markerAtHarvard = new google.maps.Marker({
-	          position: harvardBuilding,
+	var markerAtEnd = new google.maps.Marker({
+	          position: ep,
 		  map: map,
 		  label: 'End',
-	          title: 'Harvard Building'
+	          title: 'End Point'
 	});
-     	
-	var image = 'drone.jpg';
+
+	//moveDrone(sp, ep);
+	
+	var image= 'drone.jpg';
+	
+	var droneLocation = {lat: startPoint, lng: endPoint};
+	var droneMarker = new google.maps.Marker({
+	    	position: droneLocation,
+		map: map,
+		icon: image,
+		title: 'Drone'
+	});
+	
+      }
+
+      /* 
+      
+      Should x and y be int values?
+      Is my syntax in the loop correct?
+      
+
+      function moveDrone(startPoint, endPoint){
+
+	var image= 'drone.jpg';
+	
+	var droneLocation = {lat: startPoint, lng: endPoint};
+	var droneMarker = new google.maps.Marker({
+	    	position: droneLocation,
+		map: map,
+		icon: image,
+		title: 'Drone'
+	});	
+
+        for(int y = 0; y <= (startPoint.lat()+endPoint.lat()); y+((startPoint.lat()+endPoint.lat())/100)){
+	  for(int x = 0; x <= (startPoint.lng()+endPoint.lng()); x+((startPoint.lng()+endPoint())/100)){
+	    var droneLocation = {lat: x, lng: y};
+	    var droneMarker = new google.maps.Marker({
+	    	position: droneLocation,
+		map: map,
+		icon: img,
+		title: 'Drone'
+	    });
+
+	    TimeUnit.SECONDS.sleep(0.1);
+	  
+	  }
+	}
 
       }
-    
+   
+      */
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdn55P0Eb6jGBIj_roD3pg9KF5c1bA7CY&callback=initMap"
     async defer></script>
