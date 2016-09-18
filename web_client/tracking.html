@@ -3,6 +3,41 @@
   
   <head>
     <title>Drone Tracking</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+
+	<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+
+	$(document).ready(function() {
+
+	var config = {
+	    apiKey: "AIzaSyDdn55P0Eb6jGBIj_roD3pg9KF5c1bA7CY",
+	    authDomain: "hackmit-bdd.firebaseapp.com",
+	    databaseURL: "https://hackmit-bdd.firebaseio.com",
+	    storageBucket: "",
+	    messagingSenderId: "498649264042"
+	};
+
+	firebase.initializeApp(config);
+
+	// Get a database reference to our posts
+	var ref = new Firebase("https://docs-examples.firebaseio.com/web/saving-data/fireblog/posts");
+	// Attach an asynchronous callback to read the data at our posts reference
+	ref.on("value", function(snapshot) {
+	  console.log(snapshot.val());
+	  }, function (errorObject) {
+	    console.log("The read failed: " + errorObject.code);
+	    });
+
+	});
+
+	</script>
+    
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
@@ -29,7 +64,7 @@
     </div>
     
     <!--Map API integration-->
-    <div id="map" style="width: 500px; height: 500px;" align ="middle"></div>
+    <div id="map" style="width: 500px; height: 500px;" class ="col-md-4 col-md-offset-4"></div>
     <script type="text/javascript">
 
       function initMap() {
